@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "114129426798",
+    "firebase_url": "https://infoseries-firebase.firebaseio.com",
+    "project_id": "infoseries-firebase",
+    "storage_bucket": "infoseries-firebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:114129426798:android:217d905cdaa4bccfe5097f",
+        "android_client_info": {
+          "package_name": "com.mzapatam.infoseries"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "114129426798-l2acnqm0l957pd682a3i1fg5rtnjo2i9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2zCbq43xMPeqlUQ4sWXcxUQ7dlaIM7e4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "114129426798-l2acnqm0l957pd682a3i1fg5rtnjo2i9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

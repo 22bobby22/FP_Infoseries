@@ -1,0 +1,27 @@
+[02/01/2020]
+
+0. Documentación en cuaderno de bitácora (30 minutos)
+1. Crear la base de datos en Firebase (X horas)
+1.1 Leer documentación de firebase (1 hora)
+
+	Primero he leído la documentación y una guía de inicio en firebase.google.com para crear un proyecto en Firebase
+	y agregarlo al proyecto Android.
+
+1.2 Crear proyecto Firebase y conectar con Android (1 hora 30 minutos)
+
+	Para realizar esta tarea he seguido los siguientes pasos:
+
+		- En console.firebase.google.com he creado un nuevo proyecto al que he llamado infoseries-firebase.
+		- Con Android Studio he creado el proyecto Android con una actividad principal vacía al que he
+		  asignado un nivel de API mínimo de 16 (requisito de Firebase).
+		- En la consola de Firebase he registrado la aplicación Android que acabo de crear y he descargado
+		  el archivo de configuración google-services.json.
+		- En el proyecto Android, después de añadir el archivo de configuración he añadido el SDK de Firebase al gradle.
+		- Por último he ejecutado la aplicación para verificar que se ha instalado y todo funciona correctamente. Para poder
+		  ejecutar la aplicación he tenido que crear un dispositivo virtual con el AVD Manager de Android Studio
+		  y habilitar la virtualización en la BIOS.
+
+1.3 Curso de Udacity sobre Firebase
+
+	Antes de empezar a crear una base de datos en Firebase he decidido hacer un curso gratuito en www.udacity.com
+	llamado Firebase in a weekend.
