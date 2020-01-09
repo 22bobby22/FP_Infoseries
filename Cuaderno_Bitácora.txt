@@ -1,27 +1,95 @@
 [02/01/2020]
 
-0. Documentación en cuaderno de bitácora (30 minutos)
-1. Crear la base de datos en Firebase (X horas)
-1.1 Leer documentación de firebase (1 hora)
+0. Documentación en cuaderno de bitácora (1 hora)
+5.2.1. Crear la base de datos en Firebase (4 horas)
 
-	Primero he leído la documentación y una guía de inicio en firebase.google.com para crear un proyecto en Firebase
-	y agregarlo al proyecto Android.
+	- Leer documentación de firebase
 
-1.2 Crear proyecto Firebase y conectar con Android (1 hora 30 minutos)
+		Primero he leído la documentación y una guía de inicio en firebase.google.com para crear un proyecto en Firebase y agregarlo al proyecto Android.
 
-	Para realizar esta tarea he seguido los siguientes pasos:
+	- Crear proyecto Firebase y conectar con Android
 
-		- En console.firebase.google.com he creado un nuevo proyecto al que he llamado infoseries-firebase.
-		- Con Android Studio he creado el proyecto Android con una actividad principal vacía al que he
-		  asignado un nivel de API mínimo de 16 (requisito de Firebase).
-		- En la consola de Firebase he registrado la aplicación Android que acabo de crear y he descargado
-		  el archivo de configuración google-services.json.
-		- En el proyecto Android, después de añadir el archivo de configuración he añadido el SDK de Firebase al gradle.
-		- Por último he ejecutado la aplicación para verificar que se ha instalado y todo funciona correctamente. Para poder
-		  ejecutar la aplicación he tenido que crear un dispositivo virtual con el AVD Manager de Android Studio
-		  y habilitar la virtualización en la BIOS.
+		Para realizar esta tarea he seguido los siguientes pasos:
 
-1.3 Curso de Udacity sobre Firebase
+			- En console.firebase.google.com he creado un nuevo proyecto al que he llamado infoseries-firebase.
+			- Con Android Studio he creado el proyecto Android con una actividad principal vacía al que he asignado un nivel de API mínimo de 16 (requisito de Firebase).
+			- En la consola de Firebase he registrado la aplicación Android que acabo de crear y he descargado el archivo de configuración google-services.json.
+			- En el proyecto Android, después de añadir el archivo de configuración he añadido el SDK de Firebase al gradle.
+			- Por último he ejecutado la aplicación para verificar que se ha instalado y todo funciona correctamente. Para poder ejecutar la aplicación he tenido que crear un
+			  dispositivo virtual con el AVD Manager de Android Studio y habilitar la virtualización en la BIOS.
 
-	Antes de empezar a crear una base de datos en Firebase he decidido hacer un curso gratuito en www.udacity.com
-	llamado Firebase in a weekend.
+	- Curso de Udacity sobre Firebase
+
+		Antes de empezar a crear una base de datos en Firebase he decidido hacer un curso gratuito en www.udacity.com llamado Firebase in a weekend en el que he aprendido:
+
+			- Firebase almacena los datos en objetos JSON.
+			- Los ID de los objetos son únicos y creados por Firebase, se llama pushed IDs. De esta forma si dos dispositivos envían datos al mismo tiempo, como el ID lo crea
+			  Firebase, se asegura que el ID va a ser diferente para estos datos.
+			- Para trabajar con imágenes hay que añadir la dependencia 'com.github.bumptech.glide:glide'.
+			- En la actividad principal hay que crear los siguientes atributos para trabajar con Firebase: FirebaseDatabase fbDb (referencia a toda la base de datos de
+			  Firebase) y DatabaseReference dbR (referencia a una parte específica de la base de datos).
+			- Para crear una instancia de la base de datos: fbDb = FirebaseDatabase.getInstance().
+			- Para crear la instancia de una parte específica: dbR = fbDb.getReference().child(String nombre)
+			- Para enviar datos a la base de datos: dbR.push().setValue(Object objeto)
+			- Mientras que la autenticación de usuario no está implementado hay que cambiar las reglas de seguridad de Firebase a "true" para poder hacer pruebas.
+
+[Fin del día]
+
+
+
+
+[08/01/2020]
+
+0. Documentación en cuaderno de bitácora (15 minutos)
+1.1. Documentación en memoria de la motivación del proyecto (15 minutos)
+1.2. Documentación en memoria del resumen en inglés (1 hora)
+1.3. Documentación en memoria de los objetivos generales y específicos del proyecto (1 hora)
+2. Documentación en memoria de la metodología utilizada (1 hora)
+3. Documentación en memoria de las tecnologías y herramientas utilizadas en el proyecto (1 hora)
+4. Documentación en memoria de la estmiación de recursos y planificación (1 hora)
+5.1. Documentación en memoria del análisis del proyecto (3 horas)
+
+[Fin del día]
+
+
+
+
+[09/01/2020]
+
+0. Documentación en cuaderno de bitácora (1 hora 30 minutos)
+5.1. Documentación en memoria del análisis del proyecto (1 hora)
+
+	He analizado los requisitos funcionales de la aplicación pero no los no funcionales.
+
+5.2.1. Crear la base de datos en Firebase (3 horas 30 minutos)
+		
+		- Curso de Udacity sobre Firebase
+			He seguido con el curso de Firebase en el que he aprendido:
+
+				- Normalmente habría que estar comprobando continuamente si hay algún cambio en la base de datos, pero con Firebase, es Firebase quien se encarga de informar 
+				  de forma proactiva a todos los dispositivos que ha habido un cambio.
+				- Para que la aplicación sepa cuando Firebase le dice que se ha realizado un cambio se debe implementar un ChildEventListener. Después hay que sobreescribir los
+				  métodos del ChildEventListener para indicar lo que la aplicación debe hacer, dependiendo del tipo de cambio que haya ocurrido en la base de datos (add, 
+				  change o remove) la aplicación debe hacer cosas distintas. Por último hay que añadir a la referencia de la base de datos el ChildEventListener
+				  dbR.addChildEventListener(cEL).
+				- He aprendido sobre cómo configurar las reglas de seguridad en Firebase.
+				- Con FirebaseUI puedes habilitar muchas formas de autenticación de usuarios como Google, Facebook, Email, etc.
+				- Para utilizar FirebaseUI debes habilitar las formas de autenticación que quieres usar en la consola de Firebase, añadir las dependencias necesarias e
+				  implementar en el código de la aplicación la autenticación de usuarios.
+				- En este punto he dejado el curso de Firebase de lado puesto que los siguientes pasos en el curso son la implementación de la autenticación de usuarios, y el
+				  almacenamiento de imágenes, ambas son funcionalidades que planeo implementar más adelante en el proyecto. Pero, de momento quiero simplemente crear los datos
+				  en la base de datos y crear la actividad principal de la aplicación.
+
+		- Implementación del sistema de autenticación de usuarios
+		
+			He activado en mi consola de Firebase la autenticación con cuenta de Google ya que es la única que me he propuesto implementar para la realización del proyecto. Para ello he tenido que buscar el certificado SHA-1 de la aplicación y añadirlo a la configuración del proyecto en Firebase.
+
+			Después hay que implementar la autenticación en la aplicación, para ello voy a usar una librería llamada FirebaseUI que facilita esta implementación. Para usar esta librería he añadido las dependencias necesarias al proyecto (com.firebaseui:firebase-ui-auth y com.google.firebase:firebase-auth).
+
+			No voy a seguir implementando el sistema de autenticación de usuarios ya que planeaba implementarlo después de crear la actividad principal.
+
+		- Creación de los datos en Firebase
+
+			Primero voy a crear las estructuras en las que se van a almacenar los datos. Por comodidad voy a crear una actividad con unos EditText y un botón para que envíe datos a Firebase y vaya creando los objetos JSON por su cuenta.
+
+[Fin del día]
