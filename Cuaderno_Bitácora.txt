@@ -12,26 +12,31 @@
 		Para realizar esta tarea he seguido los siguientes pasos:
 
 			- En console.firebase.google.com he creado un nuevo proyecto al que he llamado infoseries-firebase.
-			- Con Android Studio he creado el proyecto Android con una actividad principal vacía al que he asignado un nivel de API mínimo de 16 (requisito de Firebase).
-			- En la consola de Firebase he registrado la aplicación Android que acabo de crear y he descargado el archivo de configuración google-services.json.
+			- Con Android Studio he creado el proyecto Android con una actividad principal vacía al que he asignado un nivel de 
+			  API mínimo de 16 (requisito de Firebase).
+			- En la consola de Firebase he registrado la aplicación Android que acabo de crear y he descargado el archivo de 
+			  configuración google-services.json.
 			- En el proyecto Android, después de añadir el archivo de configuración he añadido el SDK de Firebase al gradle.
-			- Por último he ejecutado la aplicación para verificar que se ha instalado y todo funciona correctamente. Para poder ejecutar la aplicación he tenido que crear un
-			  dispositivo virtual con el AVD Manager de Android Studio y habilitar la virtualización en la BIOS.
+			- Por último he ejecutado la aplicación para verificar que se ha instalado y todo funciona correctamente. Para poder 
+			  ejecutar la aplicación he tenido que crear un dispositivo virtual con el AVD Manager de Android Studio y habilitar
+			  la virtualización en la BIOS.
 
 	- Curso de Udacity sobre Firebase
 
 		Antes de empezar a crear una base de datos en Firebase he decidido hacer un curso gratuito en www.udacity.com llamado Firebase in a weekend en el que he aprendido:
 
 			- Firebase almacena los datos en objetos JSON.
-			- Los ID de los objetos son únicos y creados por Firebase, se llama pushed IDs. De esta forma si dos dispositivos envían datos al mismo tiempo, como el ID lo crea
-			  Firebase, se asegura que el ID va a ser diferente para estos datos.
+			- Los ID de los objetos son únicos y creados por Firebase, se llama pushed IDs. De esta forma si dos dispositivos
+			  envían datos al mismo tiempo, como el ID lo crea Firebase, se asegura que el ID va a ser diferente para estos datos.
 			- Para trabajar con imágenes hay que añadir la dependencia 'com.github.bumptech.glide:glide'.
-			- En la actividad principal hay que crear los siguientes atributos para trabajar con Firebase: FirebaseDatabase fbDb (referencia a toda la base de datos de
-			  Firebase) y DatabaseReference dbR (referencia a una parte específica de la base de datos).
+			- En la actividad principal hay que crear los siguientes atributos para trabajar con Firebase: FirebaseDatabase fbDb
+			  (referencia a toda la base de datos de Firebase) y DatabaseReference dbR (referencia a una parte específica de la
+			  base de datos).
 			- Para crear una instancia de la base de datos: fbDb = FirebaseDatabase.getInstance().
 			- Para crear la instancia de una parte específica: dbR = fbDb.getReference().child(String nombre)
 			- Para enviar datos a la base de datos: dbR.push().setValue(Object objeto)
-			- Mientras que la autenticación de usuario no está implementado hay que cambiar las reglas de seguridad de Firebase a "true" para poder hacer pruebas.
+			- Mientras que la autenticación de usuario no está implementado hay que cambiar las reglas de seguridad de Firebase a
+			  "true" para poder hacer pruebas.
 
 [Fin del día]
 
@@ -66,19 +71,23 @@
 		- Curso de Udacity sobre Firebase
 			He seguido con el curso de Firebase en el que he aprendido:
 
-				- Normalmente habría que estar comprobando continuamente si hay algún cambio en la base de datos, pero con Firebase, es Firebase quien se encarga de informar 
-				  de forma proactiva a todos los dispositivos que ha habido un cambio.
-				- Para que la aplicación sepa cuando Firebase le dice que se ha realizado un cambio se debe implementar un ChildEventListener. Después hay que sobreescribir los
-				  métodos del ChildEventListener para indicar lo que la aplicación debe hacer, dependiendo del tipo de cambio que haya ocurrido en la base de datos (add, 
-				  change o remove) la aplicación debe hacer cosas distintas. Por último hay que añadir a la referencia de la base de datos el ChildEventListener
-				  dbR.addChildEventListener(cEL).
+				- Normalmente habría que estar comprobando continuamente si hay algún cambio en la base de datos, pero con
+				  Firebase, es Firebase quien se encarga de informar de forma proactiva a todos los dispositivos que ha habido un
+				  cambio.
+				- Para que la aplicación sepa cuando Firebase le dice que se ha realizado un cambio se debe implementar un
+				  ChildEventListener. Después hay que sobreescribir los métodos del ChildEventListener para indicar lo que la
+				  aplicación debe hacer, dependiendo del tipo de cambio que haya ocurrido en la base de datos (add, 
+				  change o remove) la aplicación debe hacer cosas distintas. Por último hay que añadir a la referencia de la base
+				  de datos el ChildEventListener dbR.addChildEventListener(cEL).
 				- He aprendido sobre cómo configurar las reglas de seguridad en Firebase.
 				- Con FirebaseUI puedes habilitar muchas formas de autenticación de usuarios como Google, Facebook, Email, etc.
-				- Para utilizar FirebaseUI debes habilitar las formas de autenticación que quieres usar en la consola de Firebase, añadir las dependencias necesarias e
-				  implementar en el código de la aplicación la autenticación de usuarios.
-				- En este punto he dejado el curso de Firebase de lado puesto que los siguientes pasos en el curso son la implementación de la autenticación de usuarios, y el
-				  almacenamiento de imágenes, ambas son funcionalidades que planeo implementar más adelante en el proyecto. Pero, de momento quiero simplemente crear los datos
-				  en la base de datos y crear la actividad principal de la aplicación.
+				- Para utilizar FirebaseUI debes habilitar las formas de autenticación que quieres usar en la consola de
+				  Firebase, añadir las dependencias necesarias e implementar en el código de la aplicación la autenticación de
+				  usuarios.
+				- En este punto he dejado el curso de Firebase de lado puesto que los siguientes pasos en el curso son la 
+				  implementación de la autenticación de usuarios, y el almacenamiento de imágenes, ambas son funcionalidades que
+				  planeo implementar más adelante en el proyecto. Pero, de momento quiero simplemente crear los datos en la base
+				  de datos y crear la actividad principal de la aplicación.
 
 		- Implementación del sistema de autenticación de usuarios
 		
@@ -93,3 +102,23 @@
 			Primero voy a crear las estructuras en las que se van a almacenar los datos. Por comodidad voy a crear una actividad con unos EditText y un botón para que envíe datos a Firebase y vaya creando los objetos JSON por su cuenta.
 
 [Fin del día]
+
+
+
+
+[10/01/2020]
+
+0. Documentación en cuaderno de bitácora (30 minutos)
+5.2.1. Crear la base de datos en Firebase (4 horas)
+	
+	- Creación de los datos en Firebase
+	
+		En el directorio java del proyecto he creado el paquete activities para almacenar las actividades de la aplicación y el paquete models para almacenar los Plain Java Objects (POJOs) de los que va a hacer uso la aplicación para almacenar datos en la base de datos.
+
+		He creado el POJO para la clase Productora con los atributos: nombre, imagen, descripcion, producciones y fecha.
+
+		Para crear una pequeña cantidad de datos para hacer pruebas y empezar a construir la aplicación, he creado primero una interfaz para subir datos a Firebase. Con esta interfaz he subido 2 productoras.
+
+		A parte de aprender como pushear datos a Firebase (utilizo push para que los IDs se generen automáticamente), he tenido varios problemas para poder almacenar el objeto Date de una forma satisfactoria y que cumpla con el formato que quiero (dd/MM/yyyy). Al final, después de bastante tiempo buscando formas de realizar esta tarea, he decidido guardar la fecha usando una variable long en la que almaceno el resultado del método getTime() de la clase Date, ya que es lo que se recomienda. De esta forma, puedo simplificar el almacenamiento de la fecha y puedo transformar en cualquier momento este long a un objeto Date, ya que la clase Date contiene un constructor Date(long).
+
+		He creado el POJO para la clase Serie con los atributos: nombre, productora, imagen, descripcion, temporadas y fecha. Y también el POJO para la clase Película con los atributos: productora, nombre, imagen, descripcion, duracion, fecha.
