@@ -7,6 +7,7 @@ public class Serie {
     private String descripcion;
     private int temporadas;
     private long fecha;
+    private String categorias;
 
     public String getProductora() {
         return productora;
@@ -44,7 +45,7 @@ public class Serie {
         return temporadas;
     }
 
-    public void setDuracion(int temporadas) {
+    public void setTemporadas(int temporadas) {
         this.temporadas = temporadas;
     }
 
@@ -54,6 +55,14 @@ public class Serie {
 
     public void setFecha(long fecha) {
         this.fecha = fecha;
+    }
+
+    public String getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(String categorias) {
+        this.categorias = categorias;
     }
 
     @Override

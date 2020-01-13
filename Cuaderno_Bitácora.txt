@@ -1,124 +1,154 @@
 [02/01/2020]
 
-0. DocumentaciÛn en cuaderno de bit·cora (1 hora)
+0. Documentaci√≥n en cuaderno de bit√°cora (1 hora)
 5.2.1. Crear la base de datos en Firebase (4 horas)
 
-	- Leer documentaciÛn de firebase
+	- Leer documentaci√≥n de firebase
 
-		Primero he leÌdo la documentaciÛn y una guÌa de inicio en firebase.google.com para crear un proyecto en Firebase y agregarlo al proyecto Android.
+		Primero he le√≠do la documentaci√≥n y una gu√≠a de inicio en firebase.google.com para crear un proyecto en Firebase y agregarlo al proyecto Android.
 
 	- Crear proyecto Firebase y conectar con Android
 
 		Para realizar esta tarea he seguido los siguientes pasos:
 
 			- En console.firebase.google.com he creado un nuevo proyecto al que he llamado infoseries-firebase.
-			- Con Android Studio he creado el proyecto Android con una actividad principal vacÌa al que he asignado un nivel de 
-			  API mÌnimo de 16 (requisito de Firebase).
-			- En la consola de Firebase he registrado la aplicaciÛn Android que acabo de crear y he descargado el archivo de 
-			  configuraciÛn google-services.json.
-			- En el proyecto Android, despuÈs de aÒadir el archivo de configuraciÛn he aÒadido el SDK de Firebase al gradle.
-			- Por ˙ltimo he ejecutado la aplicaciÛn para verificar que se ha instalado y todo funciona correctamente. Para poder 
-			  ejecutar la aplicaciÛn he tenido que crear un dispositivo virtual con el AVD Manager de Android Studio y habilitar
-			  la virtualizaciÛn en la BIOS.
+			- Con Android Studio he creado el proyecto Android con una actividad principal vac√≠a al que he asignado un nivel de 
+			  API m√≠nimo de 16 (requisito de Firebase).
+			- En la consola de Firebase he registrado la aplicaci√≥n Android que acabo de crear y he descargado el archivo de 
+			  configuraci√≥n google-services.json.
+			- En el proyecto Android, despu√©s de a√±adir el archivo de configuraci√≥n he a√±adido el SDK de Firebase al gradle.
+			- Por √∫ltimo he ejecutado la aplicaci√≥n para verificar que se ha instalado y todo funciona correctamente. Para poder 
+			  ejecutar la aplicaci√≥n he tenido que crear un dispositivo virtual con el AVD Manager de Android Studio y habilitar
+			  la virtualizaci√≥n en la BIOS.
 
 	- Curso de Udacity sobre Firebase
 
 		Antes de empezar a crear una base de datos en Firebase he decidido hacer un curso gratuito en www.udacity.com llamado Firebase in a weekend en el que he aprendido:
 
 			- Firebase almacena los datos en objetos JSON.
-			- Los ID de los objetos son ˙nicos y creados por Firebase, se llama pushed IDs. De esta forma si dos dispositivos
-			  envÌan datos al mismo tiempo, como el ID lo crea Firebase, se asegura que el ID va a ser diferente para estos datos.
-			- Para trabajar con im·genes hay que aÒadir la dependencia 'com.github.bumptech.glide:glide'.
+			- Los ID de los objetos son √∫nicos y creados por Firebase, se llama pushed IDs. De esta forma si dos dispositivos
+			  env√≠an datos al mismo tiempo, como el ID lo crea Firebase, se asegura que el ID va a ser diferente para estos datos.
+			- Para trabajar con im√°genes hay que a√±adir la dependencia 'com.github.bumptech.glide:glide'.
 			- En la actividad principal hay que crear los siguientes atributos para trabajar con Firebase: FirebaseDatabase fbDb
-			  (referencia a toda la base de datos de Firebase) y DatabaseReference dbR (referencia a una parte especÌfica de la
+			  (referencia a toda la base de datos de Firebase) y DatabaseReference dbR (referencia a una parte espec√≠fica de la
 			  base de datos).
 			- Para crear una instancia de la base de datos: fbDb = FirebaseDatabase.getInstance().
-			- Para crear la instancia de una parte especÌfica: dbR = fbDb.getReference().child(String nombre)
+			- Para crear la instancia de una parte espec√≠fica: dbR = fbDb.getReference().child(String nombre)
 			- Para enviar datos a la base de datos: dbR.push().setValue(Object objeto)
-			- Mientras que la autenticaciÛn de usuario no est· implementado hay que cambiar las reglas de seguridad de Firebase a
+			- Mientras que la autenticaci√≥n de usuario no est√° implementado hay que cambiar las reglas de seguridad de Firebase a
 			  "true" para poder hacer pruebas.
 
-[Fin del dÌa]
+[Fin del d√≠a]
 
 
 
 
 [08/01/2020]
 
-0. DocumentaciÛn en cuaderno de bit·cora (15 minutos)
-1.1. DocumentaciÛn en memoria de la motivaciÛn del proyecto (15 minutos)
-1.2. DocumentaciÛn en memoria del resumen en inglÈs (1 hora)
-1.3. DocumentaciÛn en memoria de los objetivos generales y especÌficos del proyecto (1 hora)
-2. DocumentaciÛn en memoria de la metodologÌa utilizada (1 hora)
-3. DocumentaciÛn en memoria de las tecnologÌas y herramientas utilizadas en el proyecto (1 hora)
-4. DocumentaciÛn en memoria de la estmiaciÛn de recursos y planificaciÛn (1 hora)
-5.1. DocumentaciÛn en memoria del an·lisis del proyecto (3 horas)
+0. Documentaci√≥n en cuaderno de bit√°cora (15 minutos)
+1.1. Documentaci√≥n en memoria de la motivaci√≥n del proyecto (15 minutos)
+1.2. Documentaci√≥n en memoria del resumen en ingl√©s (1 hora)
+1.3. Documentaci√≥n en memoria de los objetivos generales y espec√≠ficos del proyecto (1 hora)
+2. Documentaci√≥n en memoria de la metodolog√≠a utilizada (1 hora)
+3. Documentaci√≥n en memoria de las tecnolog√≠as y herramientas utilizadas en el proyecto (1 hora)
+4. Documentaci√≥n en memoria de la estmiaci√≥n de recursos y planificaci√≥n (1 hora)
+5.1. Documentaci√≥n en memoria del an√°lisis del proyecto (3 horas)
 
-[Fin del dÌa]
+[Fin del d√≠a]
 
 
 
 
 [09/01/2020]
 
-0. DocumentaciÛn en cuaderno de bit·cora (1 hora 30 minutos)
-5.1. DocumentaciÛn en memoria del an·lisis del proyecto (1 hora)
+0. Documentaci√≥n en cuaderno de bit√°cora (1 hora 30 minutos)
+5.1. Documentaci√≥n en memoria del an√°lisis del proyecto (1 hora)
 
-	He analizado los requisitos funcionales de la aplicaciÛn pero no los no funcionales.
+	He analizado los requisitos funcionales de la aplicaci√≥n pero no los no funcionales.
 
 5.2.1. Crear la base de datos en Firebase (3 horas 30 minutos)
 		
 		- Curso de Udacity sobre Firebase
 			He seguido con el curso de Firebase en el que he aprendido:
 
-				- Normalmente habrÌa que estar comprobando continuamente si hay alg˙n cambio en la base de datos, pero con
+				- Normalmente habr√≠a que estar comprobando continuamente si hay alg√∫n cambio en la base de datos, pero con
 				  Firebase, es Firebase quien se encarga de informar de forma proactiva a todos los dispositivos que ha habido un
 				  cambio.
-				- Para que la aplicaciÛn sepa cuando Firebase le dice que se ha realizado un cambio se debe implementar un
-				  ChildEventListener. DespuÈs hay que sobreescribir los mÈtodos del ChildEventListener para indicar lo que la
-				  aplicaciÛn debe hacer, dependiendo del tipo de cambio que haya ocurrido en la base de datos (add, 
-				  change o remove) la aplicaciÛn debe hacer cosas distintas. Por ˙ltimo hay que aÒadir a la referencia de la base
+				- Para que la aplicaci√≥n sepa cuando Firebase le dice que se ha realizado un cambio se debe implementar un
+				  ChildEventListener. Despu√©s hay que sobreescribir los m√©todos del ChildEventListener para indicar lo que la
+				  aplicaci√≥n debe hacer, dependiendo del tipo de cambio que haya ocurrido en la base de datos (add, 
+				  change o remove) la aplicaci√≥n debe hacer cosas distintas. Por √∫ltimo hay que a√±adir a la referencia de la base
 				  de datos el ChildEventListener dbR.addChildEventListener(cEL).
-				- He aprendido sobre cÛmo configurar las reglas de seguridad en Firebase.
-				- Con FirebaseUI puedes habilitar muchas formas de autenticaciÛn de usuarios como Google, Facebook, Email, etc.
-				- Para utilizar FirebaseUI debes habilitar las formas de autenticaciÛn que quieres usar en la consola de
-				  Firebase, aÒadir las dependencias necesarias e implementar en el cÛdigo de la aplicaciÛn la autenticaciÛn de
+				- He aprendido sobre c√≥mo configurar las reglas de seguridad en Firebase.
+				- Con FirebaseUI puedes habilitar muchas formas de autenticaci√≥n de usuarios como Google, Facebook, Email, etc.
+				- Para utilizar FirebaseUI debes habilitar las formas de autenticaci√≥n que quieres usar en la consola de
+				  Firebase, a√±adir las dependencias necesarias e implementar en el c√≥digo de la aplicaci√≥n la autenticaci√≥n de
 				  usuarios.
 				- En este punto he dejado el curso de Firebase de lado puesto que los siguientes pasos en el curso son la 
-				  implementaciÛn de la autenticaciÛn de usuarios, y el almacenamiento de im·genes, ambas son funcionalidades que
-				  planeo implementar m·s adelante en el proyecto. Pero, de momento quiero simplemente crear los datos en la base
-				  de datos y crear la actividad principal de la aplicaciÛn.
+				  implementaci√≥n de la autenticaci√≥n de usuarios, y el almacenamiento de im√°genes, ambas son funcionalidades que
+				  planeo implementar m√°s adelante en el proyecto. Pero, de momento quiero simplemente crear los datos en la base
+				  de datos y crear la actividad principal de la aplicaci√≥n.
 
-		- ImplementaciÛn del sistema de autenticaciÛn de usuarios
+		- Implementaci√≥n del sistema de autenticaci√≥n de usuarios
 		
-			He activado en mi consola de Firebase la autenticaciÛn con cuenta de Google ya que es la ˙nica que me he propuesto implementar para la realizaciÛn del proyecto. Para ello he tenido que buscar el certificado SHA-1 de la aplicaciÛn y aÒadirlo a la configuraciÛn del proyecto en Firebase.
+			He activado en mi consola de Firebase la autenticaci√≥n con cuenta de Google ya que es la √∫nica que me he propuesto implementar para la realizaci√≥n del proyecto. Para ello he tenido que buscar el certificado SHA-1 de la aplicaci√≥n y a√±adirlo a la configuraci√≥n del proyecto en Firebase.
 
-			DespuÈs hay que implementar la autenticaciÛn en la aplicaciÛn, para ello voy a usar una librerÌa llamada FirebaseUI que facilita esta implementaciÛn. Para usar esta librerÌa he aÒadido las dependencias necesarias al proyecto (com.firebaseui:firebase-ui-auth y com.google.firebase:firebase-auth).
+			Despu√©s hay que implementar la autenticaci√≥n en la aplicaci√≥n, para ello voy a usar una librer√≠a llamada FirebaseUI que facilita esta implementaci√≥n. Para usar esta librer√≠a he a√±adido las dependencias necesarias al proyecto (com.firebaseui:firebase-ui-auth y com.google.firebase:firebase-auth).
 
-			No voy a seguir implementando el sistema de autenticaciÛn de usuarios ya que planeaba implementarlo despuÈs de crear la actividad principal.
+			No voy a seguir implementando el sistema de autenticaci√≥n de usuarios ya que planeaba implementarlo despu√©s de crear la actividad principal.
 
-		- CreaciÛn de los datos en Firebase
+		- Creaci√≥n de los datos en Firebase
 
-			Primero voy a crear las estructuras en las que se van a almacenar los datos. Por comodidad voy a crear una actividad con unos EditText y un botÛn para que envÌe datos a Firebase y vaya creando los objetos JSON por su cuenta.
+			Primero voy a crear las estructuras en las que se van a almacenar los datos. Por comodidad voy a crear una actividad con unos EditText y un bot√≥n para que env√≠e datos a Firebase y vaya creando los objetos JSON por su cuenta.
 
-[Fin del dÌa]
+[Fin del d√≠a]
 
 
 
 
 [10/01/2020]
 
-0. DocumentaciÛn en cuaderno de bit·cora (30 minutos)
+0. Documentaci√≥n en cuaderno de bit√°cora (30 minutos)
 5.2.1. Crear la base de datos en Firebase (4 horas)
 	
-	- CreaciÛn de los datos en Firebase
+	- Creaci√≥n de los datos en Firebase
 	
-		En el directorio java del proyecto he creado el paquete activities para almacenar las actividades de la aplicaciÛn y el paquete models para almacenar los Plain Java Objects (POJOs) de los que va a hacer uso la aplicaciÛn para almacenar datos en la base de datos.
+		En el directorio java del proyecto he creado el paquete activities para almacenar las actividades de la aplicaci√≥n y el paquete models para almacenar los Plain Java Objects (POJOs) de los que va a hacer uso la aplicaci√≥n para almacenar datos en la base de datos.
 
 		He creado el POJO para la clase Productora con los atributos: nombre, imagen, descripcion, producciones y fecha.
 
-		Para crear una pequeÒa cantidad de datos para hacer pruebas y empezar a construir la aplicaciÛn, he creado primero una interfaz para subir datos a Firebase. Con esta interfaz he subido 2 productoras.
+		Para crear una peque√±a cantidad de datos para hacer pruebas y empezar a construir la aplicaci√≥n, he creado primero una interfaz para subir datos a Firebase. Con esta interfaz he subido 2 productoras.
 
-		A parte de aprender como pushear datos a Firebase (utilizo push para que los IDs se generen autom·ticamente), he tenido varios problemas para poder almacenar el objeto Date de una forma satisfactoria y que cumpla con el formato que quiero (dd/MM/yyyy). Al final, despuÈs de bastante tiempo buscando formas de realizar esta tarea, he decidido guardar la fecha usando una variable long en la que almaceno el resultado del mÈtodo getTime() de la clase Date, ya que es lo que se recomienda. De esta forma, puedo simplificar el almacenamiento de la fecha y puedo transformar en cualquier momento este long a un objeto Date, ya que la clase Date contiene un constructor Date(long).
+		A parte de aprender como pushear datos a Firebase (utilizo push para que los IDs se generen autom√°ticamente), he tenido varios problemas para poder almacenar el objeto Date de una forma satisfactoria y que cumpla con el formato que quiero (dd/MM/yyyy). Al final, despu√©s de bastante tiempo buscando formas de realizar esta tarea, he decidido guardar la fecha usando una variable long en la que almaceno el resultado del m√©todo getTime() de la clase Date, ya que es lo que se recomienda. De esta forma, puedo simplificar el almacenamiento de la fecha y puedo transformar en cualquier momento este long a un objeto Date, ya que la clase Date contiene un constructor Date(long).
 
-		He creado el POJO para la clase Serie con los atributos: nombre, productora, imagen, descripcion, temporadas y fecha. Y tambiÈn el POJO para la clase PelÌcula con los atributos: productora, nombre, imagen, descripcion, duracion, fecha.
+		He creado el POJO para la clase Serie con los atributos: nombre, productora, imagen, descripcion, temporadas y fecha. Y tambi√©n el POJO para la clase Pel√≠cula con los atributos: productora, nombre, imagen, descripcion, duracion, fecha.
+
+[Fin del d√≠a]
+
+
+
+
+[13/01/2020]
+0. Documentaci√≥n en cuaderno de bit√°cora (15 minutos)
+5.2.1. Crear la base de datos en Firebase (2 horas 30 minutos)
+
+	- Creaci√≥n de los datos en Firebase
+
+		Respecto a las categor√≠as de las series y las pel√≠culas, he decidido almacenarlas en las clases Serie y Pel√≠cula, ya que como no tengo necesidad de consultar solamente las categor√≠as de las series para ninguna operaci√≥n, las puedo almacenar como un String, separando cada categor√≠a con un delimitador para luego poder usar la funci√≥n split() y obtener un array de String con las categor√≠as. De esta forma las clases Serie y Pel√≠cula siguen siendo POJOs.
+
+		He almacenado 2 pel√≠culas y 8 series con la interfaz que he creado en la aplicaci√≥n para mandar datos a Firebase. Con estos datos ya puedo empezar a desarrollar otros aspectos de la aplicaci√≥n.
+
+		
+
+
+5.2.2 Creaci√≥n del RecyclerView de la actividad principal
+
+		Para crear el RecyclerView primero tengo que seguir estos pasos:
+
+			- A√±adir la dependencia 'androidx.recyclerview:recyclerview'.
+			- Crear el elemento RecyclerView en el recurso xml de la actividad principal.
+			- Crear el elemento del que ve a estar compuesto el RecyclerView. Para empezar he creado un recurso xml con un simple
+			  TextView dentro de un LinearLayout.
+			- Crear un adaptador que es el que se va a encargar de recibir los datos y envi√°rselos al RecyclerView.
+
+[Fin del d√≠a]

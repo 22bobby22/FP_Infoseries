@@ -1,5 +1,8 @@
 package com.mzapatam.infoseries.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Pelicula {
     private String productora;
     private String nombre;
@@ -7,6 +10,7 @@ public class Pelicula {
     private String descripcion;
     private String duracion;
     private long fecha;
+    private String categorias;
 
     public String getProductora() {
         return productora;
@@ -54,6 +58,14 @@ public class Pelicula {
 
     public void setFecha(long fecha) {
         this.fecha = fecha;
+    }
+
+    public String getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(String categorias) {
+        this.categorias = categorias;
     }
 
     @Override
