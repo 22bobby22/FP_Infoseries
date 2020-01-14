@@ -129,6 +129,7 @@
 
 
 [13/01/2020]
+
 0. Documentación en cuaderno de bitácora (15 minutos)
 5.2.1. Crear la base de datos en Firebase (2 horas 30 minutos)
 
@@ -152,3 +153,29 @@
 			- Crear un adaptador que es el que se va a encargar de recibir los datos y enviárselos al RecyclerView.
 
 [Fin del día]
+
+
+
+
+[14/01/2020]
+
+0. Documentación en cuaderno de bitácora (30 minutos)
+5.2.2. Creación del RecyclerView de la actividad principal (4 horas 30 minutos)
+
+	Para personalizar el RecyclerView lo primero que voy a hacer es coger datos de la base de datos y mostrar al menos el nombre del contenido en los items del RecycleView. Para ello he cogido la referencia de la base de datos del objeto "series", he creado un ValueEventListener que es el que se va a encargar de leer los datos y tratarlos.
+
+	Para probar que tanto la conexión con Firebase como el RecyclerView funcionan correctamente, he pedido los datos de todas las series a Firebase, los he almacenado en una lista, he modificado el adaptador para que su constructor pida una lista y también para que por cada item de la lista muestre el nombre de la serie, he creado un adaptador pasandole la lista de series y he ejecutado la aplicación para comprobar que funciona. [CAPTURA DE PANTALLA 1] Como se puede observar en la captura, funciona como esperaba.
+
+	Después he pasado a modificar la vista de los items del RecyclerView para que muestre más información, concretamente, para que muestre las categorías y una imagen.
+
+	El siguiente problema que me he encontrado es ordenar los datos en orden descendiente por fecha. Firebase sólo permite ordenar por orden ascendiente, por lo que he creado una consulta que me devuelva todas las series en orden ascendiente usando la fecha y he guardado los datos en una lista, luego he utilizado el método Collections.reverse() para que la lista que estaba en orden ascendiente pasase a estar en orden descendiente.
+
+	El siguiente paso es almacenar las imágenes en Firebase y mostrarlas en la aplicación. Para ello voy a usar el storage de Firebase.
+
+	He conseguido hacer que la aplicación se comunique con el storage de Firebase y muestre imágenes usando Glide en un ImageView dentro de un item del RecyclerView. Aunque visualmente no es lo que esperaba puesto que las imágenes son de distintos tamaños y el resultado no es del todo estético, me voy a centrar más en la funcionalidad. No me puedo permitir perder mucho tiempo en la estética del proyecto. [CAPTURA DE PANTALLA 2].
+
+	El siguiente problema que he abordado es el hecho de que de momento el RecyclerView sólo muestra las series y no las películas. Para solucionar esto he juntar la consulta a Firebase que me devuelve las series y la consulta que me devuelve las películas en una sola lista y pasar esa lista al adaptador del RecyclerView. Esto me va a presentar dos problemas, el primero es que quiero que haya alguna diferencia visual en el RecyclerView que indique qué item es una serie y qué item es una película, el segundo problema es que voy a tener que cambiar la forma en la que ordenaba las series en orden descendiente ya que no me a valer en este caso usar el método reverse() de Collections.
+
+	He tenido que cambiar el API level mínimo para poder usar el método sort de Collections.
+
+	[Fin del día]
