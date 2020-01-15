@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ContentUris;
 import android.os.Bundle;
 
 import com.google.firebase.database.DataSnapshot;
@@ -16,6 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.mzapatam.infoseries.R;
 import com.mzapatam.infoseries.adapters.MainAdapter;
 import com.mzapatam.infoseries.comparators.CustomComparator;
+import com.mzapatam.infoseries.models.Pelicula;
 import com.mzapatam.infoseries.models.Serie;
 
 import java.util.ArrayList;
@@ -40,10 +42,10 @@ public class MainActivity extends AppCompatActivity {
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("series");
-        Query query = databaseReference.orderByChild("fecha");
+        databaseReference.addListenerForSingleValueEvent(valueEventListener);
 
-        dataList.sort(new CustomComparator());
-        query.addListenerForSingleValueEvent(valueEventListener);
+        databaseReference = firebaseDatabase.getReference("peliculas");
+        databaseReference.addListenerForSingleValueEvent(valueEventListener);
         mainAdapter = new MainAdapter(this, dataList);
         recyclerView.setAdapter(mainAdapter);
     }
@@ -51,14 +53,19 @@ public class MainActivity extends AppCompatActivity {
     ValueEventListener valueEventListener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            dataList.clear();
-
             if (dataSnapshot.exists()) {
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
-                    Serie serie = snapshot.getValue(Serie.class);
-                    dataList.add(serie);
+                    if (snapshot.getValue(Serie.class).getTemporadas() != 0) {
+                        Serie serie = snapshot.getValue(Serie.class);
+                        dataList.add(serie);
+                    } else {
+                        Pelicula pelicula = snapshot.getValue(Pelicula.class);
+                        dataList.add(pelicula);
+                    }
                 }
                 mainAdapter.notifyDataSetChanged();
+
+                dataList.sort(new CustomComparator());
             }
         }
 

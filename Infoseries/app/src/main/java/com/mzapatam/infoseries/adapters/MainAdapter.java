@@ -12,6 +12,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.mzapatam.infoseries.R;
 import com.mzapatam.infoseries.glide.GlideApp;
+import com.mzapatam.infoseries.models.Pelicula;
 import com.mzapatam.infoseries.models.Serie;
 
 import java.util.List;
@@ -36,15 +37,25 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ContentViewHol
 
     @Override
     public void onBindViewHolder(ContentViewHolder holder, int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
-        Serie serie = (Serie) dataList.get(position);
-        StorageReference storageReference = storage.getReferenceFromUrl(serie.getImagen());
-        ImageView imageView = holder.imagen;
+        if (dataList.get(position) instanceof Serie) {
+            Serie serie = (Serie) dataList.get(position);
+            StorageReference storageReference = storage.getReferenceFromUrl(serie.getImagen());
+            ImageView imageView = holder.imagen;
 
-        holder.nombre.setText(serie.getNombre());
-        holder.categorias.setText(serie.getCategorias());
-        GlideApp.with(imageView.getContext()).load(storageReference).into(imageView);
+            holder.nombre.setText(serie.getNombre());
+            holder.categorias.setText(serie.getCategorias().replaceAll(":", " | "));
+            GlideApp.with(imageView.getContext()).load(storageReference).into(imageView);
+            holder.tipo.setText("Serie");
+        } else {
+            Pelicula pelicula = (Pelicula) dataList.get(position);
+            StorageReference storageReference = storage.getReferenceFromUrl(pelicula.getImagen());
+            ImageView imageView = holder.imagen;
+
+            holder.nombre.setText(pelicula.getNombre());
+            holder.categorias.setText(pelicula.getCategorias().replaceAll(":", " | "));
+            GlideApp.with(imageView.getContext()).load(storageReference).into(imageView);
+            holder.tipo.setText("Pelicula");
+        }
     }
 
     @Override
@@ -57,9 +68,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ContentViewHol
     // you provide access to all the views for a data item in a view holder
     public static class ContentViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public ImageView imagen;
-        public TextView nombre;
-        public TextView categorias;
+        ImageView imagen;
+        TextView nombre;
+        TextView categorias;
+        TextView tipo;
 
         public ContentViewHolder(View view) {
             super(view);
@@ -67,6 +79,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ContentViewHol
             imagen = view.findViewById(R.id.imagen);
             nombre = view.findViewById(R.id.nombre);
             categorias = view.findViewById(R.id.categorias);
+            tipo = view.findViewById(R.id.tipo);
         }
     }
 }
