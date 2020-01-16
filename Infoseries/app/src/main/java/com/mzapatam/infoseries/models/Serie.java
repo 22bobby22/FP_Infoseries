@@ -1,6 +1,8 @@
 package com.mzapatam.infoseries.models;
 
-public class Serie {
+import java.io.Serializable;
+
+public class Serie implements Serializable {
     private String productora;
     private String nombre;
     private String imagen;

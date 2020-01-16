@@ -1,9 +1,10 @@
 package com.mzapatam.infoseries.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Pelicula {
+public class Pelicula implements Serializable {
     private String productora;
     private String nombre;
     private String imagen;

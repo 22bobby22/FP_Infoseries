@@ -17,6 +17,7 @@ public class CustomComparator implements Comparator<Object> {
             return -Long.compare(((Pelicula) o1).getFecha(), ((Serie) o2).getFecha());
         if (o1 instanceof Pelicula && o2 instanceof Pelicula)
             return -Long.compare(((Pelicula) o1).getFecha(), ((Pelicula) o2).getFecha());
+
         return 0;
     }
 }

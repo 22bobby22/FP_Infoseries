@@ -178,4 +178,27 @@
 
 	He tenido que cambiar el API level mínimo para poder usar el método sort de Collections.
 
-	[Fin del día]
+[Fin del día]
+
+
+
+
+[16/01/2020]
+
+0. Documentación en cuaderno de bitácora (30 minutos)
+5.2.2. Creación del RecyclerView de la actividad principal (4 horas)
+
+	En el layout del item del RecyclerView he creado un TextView adicional que indique si el item que se está mostrando es una serie o una película. En el código, tanto en el ValueEventListener de la clase MainActivity como en el onBindViewHolder del MainAdapter, he tenido que hacer una comprobación del tipo de dato que recibo: si tiene el dato que recibo contiene el campo temporadas entonces es una serie, en caso contrario, es una película.
+
+	Para ordenar la lista de datos que se le pasa al MainAdapter he creado un CustomComparator que compare las fechas de los objetos de la lista, ya sean películas o series, y ordene la lista de forma decreciente en base a este campo.
+
+	He rediseñado el layout del item del RecyclerView para que los elementos estén un poco más ordenados. [CAPTURA DE PANTALLA 3].
+
+	Para que cada elemento del RecyclerView cree una actividad en la que se muestre información del elemento clicado, primero he añadido un OnClickListener a los elementos del RecyclerView, de forma que se puedan clicar. En el método onClick del onClickListener se crea un intent al que se le añase un extra de nombre "Serie" o "Pelicula" (depende del dato que toque añadir) e inicie la actividad SerieActivity o PelicuclaActivity, según corresponda.
+
+	He creado dos actividades, y por tanto, dos layouts distintos, porque Serie y Pelicula tienen datos distintos, pocos, pero lo suficiente como para que no pueda usar el mismo layout para representar los datos de los dos objetos.
+
+	Las actividades SerieActivity y PeliculaActivity tiene una estructura similar, primero cogemos la referencia a las vistas del layout, luego cogemos el objeto Serie o Pelicula del intent con getIntent().getSerializableExtra("MyClass") (para poder usar este método, tanto Serie como Pelicula deben implementar la interfaz Serializable), por último cogemos los datos del objeto Serie o Pelicula y se los añadimos a las vistas del layout, formateándolos primero para que sean más legibles.
+
+	Tras seguir estos pasos, el resultado de clicar en un elemento del RecyclerView es el siguiente. [CAPTURA DE PANTALLA 4].
+
