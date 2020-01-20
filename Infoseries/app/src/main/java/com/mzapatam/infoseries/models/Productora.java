@@ -1,37 +1,10 @@
 package com.mzapatam.infoseries.models;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Productora {
-    private String nombre;
-    private String imagen;
-    private String descripcion;
+public class Productora extends Contenido implements Serializable {
     private int producciones;
-    private long fecha;
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
 
     public int getProducciones() {
         return producciones;
@@ -41,16 +14,8 @@ public class Productora {
         this.producciones = producciones;
     }
 
-    public long getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(long fecha) {
-        this.fecha = fecha;
-    }
-
     @Override
     public String toString() {
-        return "[" + nombre + ", " + imagen + ", " + descripcion + ", " + producciones + ", " + "fecha" + "]";
+        return "[" + getNombre() + ", " + getImagen() + ", " + getDescripcion() + ", " + producciones + ", " + getFecha() + "]";
     }
 }

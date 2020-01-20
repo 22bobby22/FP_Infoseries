@@ -7,6 +7,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ContentUris;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.SearchView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -17,20 +21,25 @@ import com.google.firebase.database.ValueEventListener;
 import com.mzapatam.infoseries.R;
 import com.mzapatam.infoseries.adapters.MainAdapter;
 import com.mzapatam.infoseries.comparators.CustomComparator;
+import com.mzapatam.infoseries.models.Contenido;
 import com.mzapatam.infoseries.models.Pelicula;
+import com.mzapatam.infoseries.models.Productora;
 import com.mzapatam.infoseries.models.Serie;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter mainAdapter;
+    private MainAdapter mainAdapter;
     private RecyclerView.LayoutManager layoutManager;
-    private List<Object> dataList = new ArrayList<>();
+    private List<Contenido> dataList = new ArrayList<>();
+    private Serie serie;
+    private Pelicula pelicula;
+    private Productora productora;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,15 +65,18 @@ public class MainActivity extends AppCompatActivity {
             if (dataSnapshot.exists()) {
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
                     if (snapshot.getValue(Serie.class).getTemporadas() != 0) {
-                        Serie serie = snapshot.getValue(Serie.class);
+                        serie = snapshot.getValue(Serie.class);
                         dataList.add(serie);
-                    } else {
-                        Pelicula pelicula = snapshot.getValue(Pelicula.class);
+                    } else if (snapshot.getValue(Pelicula.class).getDuracion() != null){
+                        pelicula = snapshot.getValue(Pelicula.class);
                         dataList.add(pelicula);
+                    } else if (snapshot.getValue(Productora.class).getProducciones() != 0) {
+                        productora = snapshot.getValue(Productora.class);
+                        dataList.add(productora);
                     }
                 }
                 mainAdapter.notifyDataSetChanged();
-
+                mainAdapter.populateFullList();
                 dataList.sort(new CustomComparator());
             }
         }
@@ -74,4 +86,28 @@ public class MainActivity extends AppCompatActivity {
 
         }
     };
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_search, menu);
+        MenuItem item  = menu.findItem(R.id.menuSearch);
+        SearchView searchView = (SearchView) item.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                databaseReference = firebaseDatabase.getReference("productoras");
+                databaseReference.addListenerForSingleValueEvent(valueEventListener);
+                mainAdapter.getFilter().filter(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mainAdapter.getFilter().filter(newText);
+                return true;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
+    }
 }

@@ -202,3 +202,28 @@
 
 	Tras seguir estos pasos, el resultado de clicar en un elemento del RecyclerView es el siguiente. [CAPTURA DE PANTALLA 4].
 
+[Fin del día]
+
+
+
+
+[17/01/2020]
+
+0. Documentación en cuaderno de bitácora (30 minutos)
+5.2.2. Creación del RecyclerView de la adctividad principal (15 minutos)
+
+	Para mayor legibilidad y simplicaficación del código he creado una clase abstracta Contenido con los atributos: imagen, nombre, descripción, fecha. De esta clase abstracta heredan Serie, Pelicula y Productora.
+
+5.2.3. Implementación de la función de búsqueda (3 horas)
+
+	Primero he creado una carpeta de recursos de tipo menu y en ella he creado el recurso menu_search.xml. En este recurso creo un item android con el icono de una lupa (icono representativo de la función de búsqueda), y que cuando es clicado crea un android.widget.SearchView. Este menu hay que inflarlo en la interfaz de la actividad principal dentro del método onCreateOptionsMenu.
+
+	La primera funcionalidad que he implementado es la de filtrar el contenido que ya está en el RecyclerView, sin necesidad de enviar la cadena de búsqueda. Para ello hay que añadir al SearchView un onQueryTextListener que recoja lo que se está escribiendo en el SearchView y se lo pase al método filtrador de contenido del adaptador del RecyclerView.
+
+	Para que el adaptador pueda filtrar contenido tiene que implementar la interfaz Filterable e implementar el método getFilter(). Par implementar el método getFilter(), que devuelve un filtro, hay que crear un Filter e implementar los métodos performFiltering (coge la cadena de búsqueda y filtra la lista de contenido) y publishResults (devuelve el resultado de filtrar).
+
+	Así queda una simple búsqueda, sin enviar la cadena, sólo escribiéndola: [CAPTURA DE PANTALLA 5].
+
+	Despueés me he puesto a implementar la búsqueda. Ya que filtrar no es suficiente si quieres buscar productoras, que no están añadidas en el RecyclerView de la actividad principal. Para ello cuando se envía la cadena de búsqueda en el RecyclerView hago una query a la base de datos de Firebase para coger todas las productoras, las añado a la lista del adaptador del RecyclerView y por último filtro la lista de nuevo.
+
+[Fin del día]

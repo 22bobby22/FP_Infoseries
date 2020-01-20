@@ -4,13 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Pelicula implements Serializable {
+public class Pelicula extends Contenido implements Serializable {
     private String productora;
-    private String nombre;
-    private String imagen;
-    private String descripcion;
     private String duracion;
-    private long fecha;
     private String categorias;
 
     public String getProductora() {
@@ -21,44 +17,12 @@ public class Pelicula implements Serializable {
         this.productora = productora;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
     public String getDuracion() {
         return duracion;
     }
 
     public void setDuracion(String duracion) {
         this.duracion = duracion;
-    }
-
-    public long getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(long fecha) {
-        this.fecha = fecha;
     }
 
     public String getCategorias() {
@@ -71,6 +35,6 @@ public class Pelicula implements Serializable {
 
     @Override
     public String toString() {
-        return "[" + productora + ", " + nombre + ", " + imagen + ", " + descripcion + ", " + duracion + ", " + fecha + "]";
+        return "[" + productora + ", " + getNombre() + ", " + getImagen() + ", " + getDescripcion() + ", " + duracion + ", " + getFecha() + "]";
     }
 }
