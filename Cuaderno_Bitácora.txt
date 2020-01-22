@@ -238,4 +238,6 @@
 0. Documentación en cuaderno de bitácora (15 minutos)
 5.2.4. Implementación del sistema de autenticación de usuarios ()
 
-	
+	Continuo con la implementación del sistema de autenticación de usuarios.
+
+	Las dependencias ya están añadidas, 
