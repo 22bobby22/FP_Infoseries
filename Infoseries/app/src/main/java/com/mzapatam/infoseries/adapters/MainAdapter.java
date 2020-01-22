@@ -47,8 +47,12 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ContentViewHol
     }
 
     public void populateFullList() {
-        for (Contenido c: )
-        dataListFull.addAll(dataList);
+        for (Contenido c: dataList) {
+            if (!dataListFull.contains(c))
+                dataListFull.add(c);
+        }
+
+        dataListFull.sort(new CustomComparator());
     }
 
     @Override
@@ -100,9 +104,9 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ContentViewHol
             holder.parentLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //Intent intent = new Intent(context, PeliculaActivity.class);
-                    // intent.putExtra("Pelicula", (Pelicula) dataList.get(position));
-                    // context.startActivity(intent);
+                    Intent intent = new Intent(context, PeliculaActivity.class);
+                    intent.putExtra("Pelicula", (Pelicula) dataList.get(position));
+                    context.startActivity(intent);
                 }
             });
         }

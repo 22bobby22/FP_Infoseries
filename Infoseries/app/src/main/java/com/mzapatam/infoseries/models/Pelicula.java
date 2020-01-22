@@ -1,8 +1,6 @@
 package com.mzapatam.infoseries.models;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Pelicula extends Contenido implements Serializable {
     private String productora;
@@ -36,5 +34,25 @@ public class Pelicula extends Contenido implements Serializable {
     @Override
     public String toString() {
         return "[" + productora + ", " + getNombre() + ", " + getImagen() + ", " + getDescripcion() + ", " + duracion + ", " + getFecha() + "]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null)
+            return false;
+        if (getClass() != o.getClass())
+            return false;
+
+        Pelicula pelicula = (Pelicula) o;
+
+        return (this.getNombre().equals(pelicula.getNombre())
+                && this.getImagen().equals(pelicula.getImagen())
+                && this.duracion.equals(pelicula.getDuracion())
+                && this.getDescripcion().equals(pelicula.getDescripcion())
+                && this.getFecha() == pelicula.getFecha()
+                && this.productora.equals(pelicula.getProductora())
+                && this.categorias.equals((pelicula.getCategorias())));
     }
 }

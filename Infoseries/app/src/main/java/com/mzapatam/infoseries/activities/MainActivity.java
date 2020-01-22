@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private Serie serie;
     private Pelicula pelicula;
     private Productora productora;
+    String filterPattern = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,18 +67,22 @@ public class MainActivity extends AppCompatActivity {
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
                     if (snapshot.getValue(Serie.class).getTemporadas() != 0) {
                         serie = snapshot.getValue(Serie.class);
-                        dataList.add(serie);
+                        if (!dataList.contains(serie))
+                            dataList.add(serie);
                     } else if (snapshot.getValue(Pelicula.class).getDuracion() != null){
                         pelicula = snapshot.getValue(Pelicula.class);
-                        dataList.add(pelicula);
+                        if (!dataList.contains(pelicula))
+                            dataList.add(pelicula);
                     } else if (snapshot.getValue(Productora.class).getProducciones() != 0) {
                         productora = snapshot.getValue(Productora.class);
-                        dataList.add(productora);
+                        if (!dataList.contains(productora))
+                            dataList.add(productora);
                     }
                 }
-                mainAdapter.notifyDataSetChanged();
                 mainAdapter.populateFullList();
                 dataList.sort(new CustomComparator());
+                mainAdapter.getFilter().filter(filterPattern);
+                mainAdapter.notifyDataSetChanged();
             }
         }
 
@@ -98,13 +103,15 @@ public class MainActivity extends AppCompatActivity {
             public boolean onQueryTextSubmit(String query) {
                 databaseReference = firebaseDatabase.getReference("productoras");
                 databaseReference.addListenerForSingleValueEvent(valueEventListener);
-                mainAdapter.getFilter().filter(query);
+                filterPattern = query;
+                mainAdapter.getFilter().filter(filterPattern);
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                mainAdapter.getFilter().filter(newText);
+                filterPattern = newText;
+                mainAdapter.getFilter().filter(filterPattern);
                 return true;
             }
         });

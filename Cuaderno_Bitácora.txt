@@ -224,6 +224,18 @@
 
 	Así queda una simple búsqueda, sin enviar la cadena, sólo escribiéndola: [CAPTURA DE PANTALLA 5].
 
-	Despueés me he puesto a implementar la búsqueda. Ya que filtrar no es suficiente si quieres buscar productoras, que no están añadidas en el RecyclerView de la actividad principal. Para ello cuando se envía la cadena de búsqueda en el RecyclerView hago una query a la base de datos de Firebase para coger todas las productoras, las añado a la lista del adaptador del RecyclerView y por último filtro la lista de nuevo.
+	Después me he puesto a implementar la búsqueda. Ya que filtrar no es suficiente si quieres buscar productoras, que no están añadidas en el RecyclerView de la actividad principal. Para ello cuando se envía la cadena de búsqueda en el RecyclerView hago una query a la base de datos de Firebase para coger todas las productoras, las añado a la lista del adaptador del RecyclerView y por último filtro la lista de nuevo.
+
+	También he creado una actividad con su respectivo layout para mostrar información sobre una productora.
 
 [Fin del día]
+
+
+
+
+[22/01/2020]
+
+0. Documentación en cuaderno de bitácora (15 minutos)
+5.2.4. Implementación del sistema de autenticación de usuarios ()
+
+	

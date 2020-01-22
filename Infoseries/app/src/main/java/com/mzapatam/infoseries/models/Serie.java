@@ -35,4 +35,24 @@ public class Serie extends Contenido implements Serializable {
     public String toString() {
         return "[" + productora + ", " + getNombre() + ", " + getImagen() + ", " + getDescripcion() + ", " + temporadas + ", " + getFecha() + "]";
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null)
+            return false;
+        if (getClass() != o.getClass())
+            return false;
+
+        Serie serie = (Serie) o;
+
+        return (this.getNombre().equals(serie.getNombre())
+                && this.getImagen().equals(serie.getImagen())
+                && this.temporadas == serie.getTemporadas()
+                && this.getDescripcion().equals(serie.getDescripcion())
+                && this.getFecha() == serie.getFecha()
+                && this.productora.equals(serie.getProductora())
+                && this.categorias.equals((serie.getCategorias())));
+    }
 }
