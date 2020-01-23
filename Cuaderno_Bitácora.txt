@@ -233,11 +233,11 @@
 
 
 
-[22/01/2020]
+[23/01/2020]
 
 0. Documentación en cuaderno de bitácora (15 minutos)
 5.2.4. Implementación del sistema de autenticación de usuarios ()
 
 	Continuo con la implementación del sistema de autenticación de usuarios.
 
-	Las dependencias ya están añadidas, 
+	Las dependencias ya están añadidas, he creado las variables firebaseAuth y firebaseAuthListener. Después he creado la instancia de firebaseAuth y he creado el firebaseAuthListener en la actividad principal, rellenando el método onAuthStateChanged. Este método se ejecuta cuando el usuario se conecta o se desconecta, en él primero compruebo si el usuario está conectado, y luego, si está conectado lo desconecto, si no está conectado le muestro una actividad para que se conecte.
