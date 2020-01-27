@@ -233,11 +233,23 @@
 
 
 
-[23/01/2020]
+[27/01/2020]
 
-0. Documentación en cuaderno de bitácora (15 minutos)
-5.2.4. Implementación del sistema de autenticación de usuarios ()
+0. Documentación en cuaderno de bitácora (30 minutos)
+5.2.4. Implementación del sistema de autenticación de usuarios (9 horas)
 
 	Continuo con la implementación del sistema de autenticación de usuarios.
 
 	Las dependencias ya están añadidas, he creado las variables firebaseAuth y firebaseAuthListener. Después he creado la instancia de firebaseAuth y he creado el firebaseAuthListener en la actividad principal, rellenando el método onAuthStateChanged. Este método se ejecuta cuando el usuario se conecta o se desconecta, en él primero compruebo si el usuario está conectado, y luego, si está conectado lo desconecto, si no está conectado le muestro una actividad para que se conecte.
+
+	Al intentar ejecutar la aplicación para probar la autenticación me he encontrado con un problema, la aplicación me pide que actualice los servicios de google play para poder ejecutarse. Resolver este problema me ha llevado bastante tiempo, al final resulta que tenia que descargar unas cosas con el SDK Manager de Android Studio.
+
+	Al ejecutar la aplicación, efectivamente me pide una cuenta de google para poder usar la aplicación. [CAPTURA DE PANTALLA 6]
+
+	Después he implementado una opción en el menu que permita cerrar sesión.
+
+	Cuando un usuario inicia sesión, me guardo el nombre de usuario y creo el recyclerview, ya que he actualizado las reglas de firebase para que no se puedan ni leer ni escribir datos si el usuario no inicia sesión primero. Cuando un usuario cierra sesión, borro los datos del recyclerView y borro el nombre de usuario.
+
+5.2.5. Implementación de la función de marcado ()
+
+	Lo siguiente que voy a implementar es un botón que permita marcar un contenido, de forma que se envia a la base de datos el usuario y el nombre del contenido marcado. Esta información es la que pretendo mostrar en una actividad pa

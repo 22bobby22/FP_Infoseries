@@ -16,6 +16,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.mzapatam.infoseries.R;
 import com.mzapatam.infoseries.activities.PeliculaActivity;
+import com.mzapatam.infoseries.activities.ProductoraActivity;
 import com.mzapatam.infoseries.activities.SerieActivity;
 import com.mzapatam.infoseries.comparators.CustomComparator;
 import com.mzapatam.infoseries.glide.GlideApp;
@@ -51,8 +52,11 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ContentViewHol
             if (!dataListFull.contains(c))
                 dataListFull.add(c);
         }
-
         dataListFull.sort(new CustomComparator());
+    }
+
+    public void clearFullList() {
+        dataListFull.clear();
     }
 
     @Override
@@ -104,8 +108,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ContentViewHol
             holder.parentLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context, PeliculaActivity.class);
-                    intent.putExtra("Pelicula", (Pelicula) dataList.get(position));
+                    Intent intent = new Intent(context, ProductoraActivity.class);
+                    intent.putExtra("Productora", (Productora) dataList.get(position));
                     context.startActivity(intent);
                 }
             });

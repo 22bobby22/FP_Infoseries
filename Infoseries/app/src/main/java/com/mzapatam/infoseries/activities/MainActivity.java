@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ContentUris;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -47,34 +48,28 @@ public class MainActivity extends AppCompatActivity {
     private Pelicula pelicula;
     private Productora productora;
     String filterPattern = "";
+    String username;
     private static final int RC_SIGN_IN = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        firebaseAuth = FirebaseAuth.getInstance();
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
+        firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("series");
-        databaseReference.addListenerForSingleValueEvent(valueEventListener);
-
-        databaseReference = firebaseDatabase.getReference("peliculas");
-        databaseReference.addListenerForSingleValueEvent(valueEventListener);
-        mainAdapter = new MainAdapter(this, dataList);
-        recyclerView.setAdapter(mainAdapter);
 
         firebaseAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    Toast.makeText(MainActivity.this, "Signed in", Toast.LENGTH_LONG).show();
+                    onSignedInInitialize(user.getDisplayName());
                 } else {
+                    onSignedOutCleanup();
                     startActivityForResult(
                             AuthUI.getInstance()
                                     .createSignInIntentBuilder()
@@ -123,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_search, menu);
+        inflater.inflate(R.menu.menu_sign_out, menu);
         MenuItem item = menu.findItem(R.id.menuSearch);
         SearchView searchView = (SearchView) item.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -146,6 +142,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.sign_out_menu:
+                AuthUI.getInstance().signOut(this);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
     protected void onPause() {
         super.onPause();
         firebaseAuth.removeAuthStateListener(firebaseAuthListener);
@@ -155,5 +162,43 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         firebaseAuth.addAuthStateListener(firebaseAuthListener);
+    }
+    
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RC_SIGN_IN) {
+            if (resultCode == RESULT_OK)
+                Toast.makeText(this, "Signed in!", Toast.LENGTH_SHORT).show();
+            else if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(this, "Sign in canceled", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
+        
+    }
+
+    private void createRecyclerView() {
+        databaseReference = firebaseDatabase.getReference("series");
+        databaseReference.addListenerForSingleValueEvent(valueEventListener);
+
+        databaseReference = firebaseDatabase.getReference("peliculas");
+        databaseReference.addListenerForSingleValueEvent(valueEventListener);
+        mainAdapter = new MainAdapter(this, dataList);
+        recyclerView.setAdapter(mainAdapter);
+    }
+
+    private void onSignedInInitialize(String username) {
+        this.username = username;
+        createRecyclerView();
+    }
+
+    private void onSignedOutCleanup() {
+        username = null;
+        dataList.clear();
+        if (mainAdapter != null) {
+            mainAdapter.clearFullList();
+            mainAdapter.notifyDataSetChanged();
+        }
     }
 }

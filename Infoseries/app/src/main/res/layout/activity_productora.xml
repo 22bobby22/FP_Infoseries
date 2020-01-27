@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -36,16 +35,6 @@
         android:onClick="onToggleStar"/>
 
     <TextView
-        app:layout_constraintTop_toBottomOf="@+id/nombre"
-        app:layout_constraintLeft_toRightOf="@id/imagen"
-        android:id="@+id/productora"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:textColor="@android:color/black"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
         android:id="@+id/fecha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -58,15 +47,7 @@
         app:layout_constraintTop_toBottomOf="@+id/fecha"
         app:layout_constraintLeft_toLeftOf="parent"
         android:textColor="@android:color/black"
-        android:id="@+id/duracion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        app:layout_constraintTop_toBottomOf="@+id/duracion"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:textColor="@android:color/black"
-        android:id="@+id/categorias"
+        android:id="@+id/producciones"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -77,6 +58,6 @@
         android:layout_marginTop="8dp"
         android:textColor="@android:color/black"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/categorias" />
+        app:layout_constraintTop_toBottomOf="@+id/producciones" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
