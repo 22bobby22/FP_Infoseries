@@ -9,7 +9,20 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:scrollbars="vertical"
-        android:layout_height="match_parent"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/nav_view"
+        app:layout_constrainedHeight="true"
+        android:layout_height="0dp"
         android:layout_width="match_parent" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_view"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_height="56dp"
+        android:layout_width="match_parent"
+        app:menu="@menu/nav_items" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

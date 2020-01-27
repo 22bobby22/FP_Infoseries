@@ -21,7 +21,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.mzapatam.infoseries.R;
 import com.mzapatam.infoseries.adapters.MainAdapter;
@@ -37,7 +36,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference databaseReference;
+    private DatabaseReference seriesReference;
+    private DatabaseReference peliculasReference;
+    private DatabaseReference productorasReference;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
     private RecyclerView recyclerView;
@@ -124,8 +125,8 @@ public class MainActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                databaseReference = firebaseDatabase.getReference("productoras");
-                databaseReference.addListenerForSingleValueEvent(valueEventListener);
+                productorasReference = firebaseDatabase.getReference("productoras");
+                productorasReference.addListenerForSingleValueEvent(valueEventListener);
                 filterPattern = query;
                 mainAdapter.getFilter().filter(filterPattern);
                 return true;
@@ -175,15 +176,13 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         }
-        
     }
 
     private void createRecyclerView() {
-        databaseReference = firebaseDatabase.getReference("series");
-        databaseReference.addListenerForSingleValueEvent(valueEventListener);
-
-        databaseReference = firebaseDatabase.getReference("peliculas");
-        databaseReference.addListenerForSingleValueEvent(valueEventListener);
+        seriesReference = firebaseDatabase.getReference("series");
+        seriesReference.addListenerForSingleValueEvent(valueEventListener);
+        peliculasReference = firebaseDatabase.getReference("peliculas");
+        peliculasReference.addListenerForSingleValueEvent(valueEventListener);
         mainAdapter = new MainAdapter(this, dataList);
         recyclerView.setAdapter(mainAdapter);
     }
@@ -197,8 +196,18 @@ public class MainActivity extends AppCompatActivity {
         username = null;
         dataList.clear();
         if (mainAdapter != null) {
-            mainAdapter.clearFullList();
+            mainAdapter.clearData();
             mainAdapter.notifyDataSetChanged();
         }
+        detachListeners();
+    }
+
+    private void detachListeners() {
+        if (seriesReference != null)
+            seriesReference.removeEventListener(valueEventListener);
+        if (peliculasReference != null)
+            peliculasReference.removeEventListener(valueEventListener);
+        if (productorasReference != null)
+            productorasReference.removeEventListener(valueEventListener);
     }
 }

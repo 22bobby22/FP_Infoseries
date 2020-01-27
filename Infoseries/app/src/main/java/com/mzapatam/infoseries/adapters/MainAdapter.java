@@ -55,8 +55,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ContentViewHol
         dataListFull.sort(new CustomComparator());
     }
 
-    public void clearFullList() {
+    public void clearData() {
         dataListFull.clear();
+        dataList.clear();
+        filteredList.clear();
     }
 
     @Override
@@ -102,6 +104,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ContentViewHol
             });
         } else if (contenido instanceof Productora) {
             productora = (Productora) contenido;
+            holder.categorias.setText("");
             holder.tipo.setText("Productora");
             GlideApp.with(imageView.getContext()).load(storageReference).into(imageView);
 

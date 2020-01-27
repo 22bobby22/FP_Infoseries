@@ -235,7 +235,7 @@
 
 [27/01/2020]
 
-0. Documentación en cuaderno de bitácora (30 minutos)
+0. Documentación en cuaderno de bitácora (1 hora)
 5.2.4. Implementación del sistema de autenticación de usuarios (9 horas)
 
 	Continuo con la implementación del sistema de autenticación de usuarios.
@@ -250,6 +250,12 @@
 
 	Cuando un usuario inicia sesión, me guardo el nombre de usuario y creo el recyclerview, ya que he actualizado las reglas de firebase para que no se puedan ni leer ni escribir datos si el usuario no inicia sesión primero. Cuando un usuario cierra sesión, borro los datos del recyclerView y borro el nombre de usuario.
 
-5.2.5. Implementación de la función de marcado ()
+5.2.5. Implementación de la función de marcado y la barra de navegación inferior (2 horas)
 
-	Lo siguiente que voy a implementar es un botón que permita marcar un contenido, de forma que se envia a la base de datos el usuario y el nombre del contenido marcado. Esta información es la que pretendo mostrar en una actividad pa
+	Lo siguiente que voy a implementar es un botón que permita marcar un contenido, de forma que se envia a la base de datos el usuario y el nombre del contenido marcado. Esta información es la que pretendo mostrar en un recyclerview para que el usuario pueda ver en cualquier momento el contenido que tiene marcado.
+
+	He creado un botón en las actividades de contenido (serie, película y productora) con la imagen de una estrella, aunque todavía no he implementado la funcionalidad.
+
+	También he creado un barra de navegación inferior sin funcionalidad, sólo se ve visualmente. [CAPTURAS DE PANTALLA 7 Y 8]
+
+[Fin del día]
