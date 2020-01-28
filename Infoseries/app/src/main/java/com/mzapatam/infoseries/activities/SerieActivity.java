@@ -1,16 +1,20 @@
 package com.mzapatam.infoseries.activities;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.mzapatam.infoseries.R;
+import com.mzapatam.infoseries.Tools.DatabaseOperations;
 import com.mzapatam.infoseries.glide.GlideApp;
-import com.mzapatam.infoseries.models.Pelicula;
 import com.mzapatam.infoseries.models.Serie;
 
 import java.text.SimpleDateFormat;
@@ -26,6 +30,10 @@ public class SerieActivity extends AppCompatActivity {
     private TextView fecha;
     private TextView temporadas;
     private TextView descripcion;
+    private boolean isBookmarked;
+    private String username;
+    private DatabaseOperations databaseOperations;
+    private ImageButton botonDeMarcado;
 
     @Override
     protected void onCreate(Bundle savedInstance) {
@@ -39,6 +47,12 @@ public class SerieActivity extends AppCompatActivity {
         fecha = findViewById(R.id.fecha);
         temporadas = findViewById(R.id.temporadas);
         descripcion = findViewById(R.id.descripcion);
+        botonDeMarcado = findViewById(R.id.bookmark);
+        databaseOperations = new DatabaseOperations();
+        isBookmarked = false;
+
+        if (getIntent().hasExtra("username"))
+            username = getIntent().getStringExtra("username");
 
         if (getIntent().hasExtra("Serie")) {
             serie = (Serie) getIntent().getSerializableExtra("Serie");
@@ -61,6 +75,28 @@ public class SerieActivity extends AppCompatActivity {
 
             temporadas.setText("Temporadas: " + Integer.toString(serie.getTemporadas()));
             descripcion.setText("Descripción\n" + serie.getDescripcion());
+
+            if (databaseOperations.isBookmarked(username, serie.getNombre())) {
+                isBookmarked = true;
+                botonDeMarcado.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), android.R.drawable.btn_star_big_on));
+            }
+
+            botonDeMarcado.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (isBookmarked) {
+                        botonDeMarcado.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), android.R.drawable.btn_star_big_off));
+                        isBookmarked = false;
+                        Toast.makeText(SerieActivity.this, "Bookmark deleted", Toast.LENGTH_SHORT).show();
+                        databaseOperations.deleteBookmark(username, serie.getNombre());
+                    } else {
+                        botonDeMarcado.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), android.R.drawable.btn_star_big_on));
+                        isBookmarked = true;
+                        Toast.makeText(SerieActivity.this, "Bookmark added", Toast.LENGTH_SHORT).show();
+                        databaseOperations.addBookmark(username, "Serie", serie.getNombre());
+                    }
+                }
+            });
         }
     }
 }

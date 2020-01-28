@@ -8,16 +8,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.mzapatam.infoseries.R;
+import com.mzapatam.infoseries.Tools.DatabaseOperations;
 import com.mzapatam.infoseries.glide.GlideApp;
 import com.mzapatam.infoseries.models.Pelicula;
 
-import java.security.spec.ECField;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -33,15 +32,13 @@ public class PeliculaActivity extends AppCompatActivity{
     private TextView duracion;
     private TextView descripcion;
     private ImageButton botonDeMarcado;
-    private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference usuariosReference;
+    private boolean isBookmarked;
+    private DatabaseOperations databaseOperations;
 
     @Override
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
         setContentView(R.layout.activity_pelicula);
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        usuariosReference = firebaseDatabase.getReference("usuarios");
 
         imagen = findViewById(R.id.imagen);
         nombre = findViewById(R.id.nombre);
@@ -51,6 +48,8 @@ public class PeliculaActivity extends AppCompatActivity{
         duracion = findViewById(R.id.duracion);
         descripcion = findViewById(R.id.descripcion);
         botonDeMarcado = findViewById(R.id.bookmark);
+        databaseOperations = new DatabaseOperations();
+        isBookmarked = false;
 
         if (getIntent().hasExtra("username"))
             username = getIntent().getStringExtra("username");
@@ -76,33 +75,28 @@ public class PeliculaActivity extends AppCompatActivity{
             productora.setText(pelicula.getProductora());
             duracion.setText("Duración: " + (pelicula.getDuracion()));
             descripcion.setText("Descripción\n" + pelicula.getDescripcion());
-        }
 
-        //TODO: si el contenido ya está marcado, clicar el botón
-
-        botonDeMarcado.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO: si el botón está clicado
-                deleteBookmark();
-                //TODO: si el botón no está clicado
-                addBookmark();
+            if (databaseOperations.isBookmarked(username, pelicula.getNombre())) {
+                isBookmarked = true;
+                botonDeMarcado.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), android.R.drawable.btn_star_big_on));
             }
-        });
-    }
 
-    private void addBookmark() {
-        //TODO: si el usuario no existe
-        addUser();
-
-        //TODO: insert bookmark
-    }
-
-    private void deleteBookmark() {
-        //TODO: delete bookmark
-    }
-
-    private void addUser() {
-        //TODO: insert user
+            botonDeMarcado.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (isBookmarked) {
+                        botonDeMarcado.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), android.R.drawable.btn_star_big_off));
+                        isBookmarked = false;
+                        Toast.makeText(PeliculaActivity.this, "Bookmark deleted", Toast.LENGTH_SHORT).show();
+                        databaseOperations.deleteBookmark(username, pelicula.getNombre());
+                    } else {
+                        botonDeMarcado.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), android.R.drawable.btn_star_big_on));
+                        isBookmarked = true;
+                        Toast.makeText(PeliculaActivity.this, "Bookmark added", Toast.LENGTH_SHORT).show();
+                        databaseOperations.addBookmark(username, "Pelicula", pelicula.getNombre());
+                    }
+                }
+            });
+        }
     }
 }
