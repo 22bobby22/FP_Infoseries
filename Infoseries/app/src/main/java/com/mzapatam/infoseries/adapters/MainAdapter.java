@@ -33,15 +33,16 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ContentViewHol
     private List<Contenido> dataList;
     private FirebaseStorage storage;
     private Contenido contenido;
-    private Productora productora;
     private Serie serie;
     private Pelicula pelicula;
+    private String username;
     private List<Contenido> filteredList;
     private List<Contenido> dataListFull;
 
-    public MainAdapter(Context context, List<Contenido> dataList) {
+    public MainAdapter(Context context, List<Contenido> dataList, String username) {
         this.context = context;
         this.dataList = dataList;
+        this.username = username;
         dataListFull = new ArrayList<>();
         filteredList = new ArrayList<>();
         storage = FirebaseStorage.getInstance();
@@ -84,7 +85,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ContentViewHol
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, SerieActivity.class);
-                    intent.putExtra("Serie", (Serie) dataList.get(position));
+                    intent.putExtra("username", username);
+                    intent.putExtra("Serie", dataList.get(position));
                     context.startActivity(intent);
                 }
             });
@@ -98,12 +100,12 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ContentViewHol
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, PeliculaActivity.class);
-                    intent.putExtra("Pelicula", (Pelicula) dataList.get(position));
+                    intent.putExtra("username", username);
+                    intent.putExtra("Pelicula", dataList.get(position));
                     context.startActivity(intent);
                 }
             });
         } else if (contenido instanceof Productora) {
-            productora = (Productora) contenido;
             holder.categorias.setText("");
             holder.tipo.setText("Productora");
             GlideApp.with(imageView.getContext()).load(storageReference).into(imageView);
@@ -112,7 +114,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ContentViewHol
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, ProductoraActivity.class);
-                    intent.putExtra("Productora", (Productora) dataList.get(position));
+                    intent.putExtra("username", username);
+                    intent.putExtra("Productora", dataList.get(position));
                     context.startActivity(intent);
                 }
             });

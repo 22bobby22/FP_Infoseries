@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
         seriesReference.addListenerForSingleValueEvent(valueEventListener);
         peliculasReference = firebaseDatabase.getReference("peliculas");
         peliculasReference.addListenerForSingleValueEvent(valueEventListener);
-        mainAdapter = new MainAdapter(this, dataList);
+        mainAdapter = new MainAdapter(this, dataList, username);
         recyclerView.setAdapter(mainAdapter);
     }
 
