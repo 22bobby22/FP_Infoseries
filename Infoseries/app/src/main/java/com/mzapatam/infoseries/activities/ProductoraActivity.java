@@ -65,10 +65,10 @@ public class ProductoraActivity extends AppCompatActivity {
             producciones.setText("Producciones: " + Integer.toString(productora.getProducciones()));
             descripcion.setText("Descripción\n" + productora.getDescripcion());
 
-            if (databaseOperations.isBookmarked(username, productora.getNombre())) {
-                isBookmarked = true;
-                botonDeMarcado.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), android.R.drawable.btn_star_big_on));
-            }
+            //if (databaseOperations.isBookmarked(username, productora.getNombre())) {
+            //    isBookmarked = true;
+            //    botonDeMarcado.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), android.R.drawable.btn_star_big_on));
+            //}
 
             botonDeMarcado.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 productorasReference = firebaseDatabase.getReference("productoras");
-                productorasReference.addListenerForSingleValueEvent(valueEventListener);
+                productorasReference.addValueEventListener(valueEventListener);
                 filterPattern = query;
                 mainAdapter.getFilter().filter(filterPattern);
                 return true;
@@ -179,9 +179,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void createRecyclerView() {
         seriesReference = firebaseDatabase.getReference("series");
-        seriesReference.addListenerForSingleValueEvent(valueEventListener);
+        seriesReference.addValueEventListener(valueEventListener);
         peliculasReference = firebaseDatabase.getReference("peliculas");
-        peliculasReference.addListenerForSingleValueEvent(valueEventListener);
+        peliculasReference.addValueEventListener(valueEventListener);
         mainAdapter = new MainAdapter(this, dataList, username);
         recyclerView.setAdapter(mainAdapter);
     }

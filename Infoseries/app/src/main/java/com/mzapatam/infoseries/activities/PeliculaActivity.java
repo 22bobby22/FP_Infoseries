@@ -76,10 +76,10 @@ public class PeliculaActivity extends AppCompatActivity{
             duracion.setText("Duración: " + (pelicula.getDuracion()));
             descripcion.setText("Descripción\n" + pelicula.getDescripcion());
 
-            if (databaseOperations.isBookmarked(username, pelicula.getNombre())) {
-                isBookmarked = true;
-                botonDeMarcado.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), android.R.drawable.btn_star_big_on));
-            }
+            //if (databaseOperations.isBookmarked(username, pelicula.getNombre())) {
+            //    isBookmarked = true;
+            //    botonDeMarcado.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), android.R.drawable.btn_star_big_on));
+            //}
 
             botonDeMarcado.setOnClickListener(new View.OnClickListener() {
                 @Override

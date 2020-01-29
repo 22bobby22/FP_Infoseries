@@ -275,3 +275,11 @@
 	He creado una clase auxiliar llamada "DatabaseOperations" en un paquete Java llamado "Tools", esta clase contiene métodos necesarios para implementar la funcionalidad de marcado de contenido, como estos métodos van a ser utilizados en distintas actividades, he querido implementarlos en una clase a parte para no tener mucho código duplicado. Estos métodos son: userExists, comprueba si el usuario ha marcado contenido anteriormente o es su primera vez; addUser, añade el usuario a la base de datos; isBookmarked, comprueba si el contenido ya ha sido marcado por el usuario anteriormente; addBookmark, añade el marcador en la base de datos; deleteBookmark, borra el marcador de la base de datos.
 
 [Fin del día]
+
+
+[29/01/2020]
+
+0. Documentación en cuaderno de bitácora ()
+5.2.5 Implementación de la función de marcado y la barra de navegación inferior ()
+
+	

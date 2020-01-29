@@ -76,10 +76,10 @@ public class SerieActivity extends AppCompatActivity {
             temporadas.setText("Temporadas: " + Integer.toString(serie.getTemporadas()));
             descripcion.setText("Descripción\n" + serie.getDescripcion());
 
-            if (databaseOperations.isBookmarked(username, serie.getNombre())) {
-                isBookmarked = true;
-                botonDeMarcado.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), android.R.drawable.btn_star_big_on));
-            }
+            //if (databaseOperations.isBookmarked(username, serie.getNombre())) {
+            //    isBookmarked = true;
+            //    botonDeMarcado.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), android.R.drawable.btn_star_big_on));
+            //}
 
             botonDeMarcado.setOnClickListener(new View.OnClickListener() {
                 @Override
