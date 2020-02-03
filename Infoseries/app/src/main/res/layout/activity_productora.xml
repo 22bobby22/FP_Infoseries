@@ -31,8 +31,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:src="@android:drawable/btn_star"
-        android:background="#00ffffff"
-        android:onClick="onToggleStar"/>
+        android:background="#00ffffff" />
 
     <TextView
         android:id="@+id/fecha"

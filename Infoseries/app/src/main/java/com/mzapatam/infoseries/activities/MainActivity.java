@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,6 +15,8 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -50,17 +53,21 @@ public class MainActivity extends AppCompatActivity {
     String filterPattern = "";
     String username;
     private static final int RC_SIGN_IN = 1;
+    private BottomNavigationView bottomNavigationView;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        context = this;
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        recyclerView = findViewById(R.id.recyclerview);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
+        bottomNavigationView = findViewById(R.id.nav_view);
 
         firebaseAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -80,6 +87,23 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.nav_home:
+                        return true;
+                    case R.id.nav_bookmarks:
+                        Intent intent = new Intent(context, BookmarksActivity.class);
+                        intent.putExtra("username", username);
+                        context.startActivity(intent);
+                        return true;
+                }
+
+                return false;
+            }
+        });
     }
 
     ValueEventListener valueEventListener = new ValueEventListener() {
@@ -162,6 +186,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         firebaseAuth.addAuthStateListener(firebaseAuthListener);
+        bottomNavigationView.setSelectedItemId(R.id.nav_home);
     }
     
     @Override

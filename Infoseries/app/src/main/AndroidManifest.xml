@@ -19,6 +19,7 @@
         <activity android:name=".activities.SerieActivity" />
         <activity android:name=".activities.PeliculaActivity" />
         <activity android:name=".activities.ProductoraActivity" />
+        <activity android:name=".activities.BookmarksActivity" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
