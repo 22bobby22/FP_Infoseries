@@ -51,7 +51,7 @@
 1.3. Documentación en memoria de los objetivos generales y específicos del proyecto (1 hora)
 2. Documentación en memoria de la metodología utilizada (1 hora)
 3. Documentación en memoria de las tecnologías y herramientas utilizadas en el proyecto (1 hora)
-4. Documentación en memoria de la estmiación de recursos y planificación (1 hora)
+4. Documentación en memoria de la estimación de recursos y planificación (1 hora)
 5.1. Documentación en memoria del análisis del proyecto (3 horas)
 
 [Fin del día]
@@ -280,6 +280,5 @@
 [29/01/2020]
 
 0. Documentación en cuaderno de bitácora ()
-5.2.5 Implementación de la función de marcado y la barra de navegación inferior ()
-
+5.2.5 Implementación de la función de marcado y la barra de navegación inferior (15 horas)
 	
